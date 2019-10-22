@@ -1,3 +1,12 @@
+<?php
+  include "includes/conexao.php";
+
+  $sql = "SELECT * FROM cliente";
+  $lista = $conn ->query($sql);
+
+?>
+
+
 <?php include 'includes/header.php';?>
 
 <div class="container">
@@ -18,13 +27,18 @@
 
 <tbody>
 
+    <?php while($cliente = $lista ->fetch_assoc()) { ?>
+
     <tr>
-      <th scope="row">0</th>
-      <td>William Hormerod</td>
-      <td>(21)98507-1093</td>
-      <td>william.hormerod@gmail.com</td>
-      <td>132.463.775.96</td>
+      <th scope="row"><?php echo $cliente['pk_cliente']?></th>
+
+      <td><?php echo $cliente['nome']?></td>
+      <td><?php echo $cliente['telefone']?></td>
+      <td><?php echo $cliente['email']?></td>
+      <td><?php echo $cliente['cpf']?></td>
+      
     </tr>
+    <?php } ?>
 
 </tbody>
 
