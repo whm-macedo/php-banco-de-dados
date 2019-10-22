@@ -1,29 +1,51 @@
 <?php
 if($_POST){
 
-   // inluindo o arquivo de conexao 
+   // inluindo o arquivo de conexao
+
     include "includes/conexao.php";
+    include "includes/funcoes.php";
+
     // capturar os dados do POST
+
     $nome = $_POST['nome'];
     $telefone = $_POST['telefone'];
     $email = $_POST['email'];
     $cpf = $_POST['cpf'];
+
+    if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $msg = "Email inválido";
+    }else{
+        
     //criar o sql
+
     $sql = "INSERT INTO cliente VALUE
     (default,'{$nome}','{$telefone}','{$email}','{$cpf}')";
     //tenta cadastrar, retornar true e false
+
     $resposta = $conn ->query($sql);
     //se true verdadeiro, cadastro efetuado
+
     if($resposta === true){
         $msg = "Cadastrado com Sucesso!";
     }else{
         $msg = "Erro ao Cadastrar!";
     }
-
+    }
 
     }
 
+
+
+
 ?>
+
+
+
+
+
+
+
 
 <?php include 'includes/header.php';?>
 
