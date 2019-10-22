@@ -15,8 +15,12 @@ if($_POST){
 
     if(!filter_var($email, FILTER_VALIDATE_EMAIL)){
         $msg = "Email inválido";
-    }else{
+
+    }else if(validaCPF($cpf)){
+        $msg = "CPF Inválido";
         
+    }else{
+
     //criar o sql
 
     $sql = "INSERT INTO cliente VALUE
